@@ -328,67 +328,220 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Recursos e Tecnologias</h2>
+
+
+  <!-- Features Section for Gaming and Content Creation -->
+  <section id="features" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">Recursos para Jogos e Criadores de Conteúdo</h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Ubuntu oferece uma plataforma poderosa para jogadores e criadores de conteúdo, com suporte a ferramentas profissionais e jogos AAA.</p>
+        
+        <!-- Gaming Section -->
+        <div class="mb-16">
+            <div class="flex items-center justify-center mb-8">
+                <span class="gaming-badge text-white px-4 py-2 rounded-full text-sm font-bold flex items-center">
+                    
+                    <div class="mt-12 text-center">
+                        <a href="#" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg inline-block">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Jogos no Ubuntu </a>
+                        
+                    </div>
             
-            <div class="flex flex-col lg:flex-row gap-8 items-center">
-                <div class="lg:w-1/2">
-                    <div class="bg-white rounded-xl p-8 shadow-lg">
-                        <div class="mb-6">
-                            <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-cube text-orange-600 mr-2"></i> Snap Packages</h3>
-                            <p class="text-gray-600">Sistema de empacotamento universal que permite instalar aplicativos com todas dependências incluídas, atualizando-se automaticamente.</p>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-shield-alt text-orange-600 mr-2"></i> AppArmor</h3>
-                            <p class="text-gray-600">Sistema de segurança que restringe as capacidades de programas individuais, protegendo contra vulnerabilidades.</p>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-cloud text-orange-600 mr-2"></i> Integração com Nuvem</h3>
-                            <p class="text-gray-600">Acesso fácil a contas online e serviços como Google Drive, Microsoft OneDrive e Nextcloud diretamente do gerenciador de arquivos.</p>
-                        </div>
-                        
-                        <div class="flex justify-center mt-8">
-                            <a href="https://ubuntu.com/features" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg">
-                                <i class="fas fa-info-circle mr-2"></i> Ver Todos os Recursos
-                            </a>
-                        </div>
+                </span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Steam Card -->
+                <div class="game-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam" class="h-10 w-10 mr-3">
+                        <h3 class="text-xl font-bold text-gray-800">Steam</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Plataforma de jogos mais popular com suporte oficial no Ubuntu. Inclui Proton para rodar jogos do Windows via Steam Play.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Snap</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">DEB</span>
+                        <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Proton</span>
                     </div>
                 </div>
                 
-                <div class="lg:w-1/2">
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/250px-Kubernetes_logo_without_workmark.svg.png" alt="Kubernetes" class="h-16 mb-3">
-                            <span class="text-gray-700 font-medium">MicroK8s</span>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg" alt="Docker" class="h-16 mb-3">
-                            <span class="text-gray-700 font-medium">Docker</span>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Laravel.svg" alt="Laravel" class="h-16 mb-3">
-                            <span class="text-gray-700 font-medium">Laravel</span>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" alt="VSCode" class="h-16 mb-3">
-                            <span class="text-gray-700 font-medium">VS Code</span>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/UbuntuCoF.svg" alt="Ubuntu" class="h-16 mb-3">
-                            <span class="text-gray-700 font-medium">Snapcraft</span>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg" alt="Git" class="h-16 mb-3">
-                            <span class="text-gray-700 font-medium">Git</span>
-                        </div>
+                <!-- Lutris Card -->
+                <div class="game-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://lutris.net/static/images/logo.png" alt="Lutris" class="h-10 w-10 mr-3 rounded">
+                        <h3 class="text-xl font-bold text-gray-800">Lutris</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Gerenciador de jogos open-source que integra GOG, Epic Games, Battle.net e emuladores em uma única interface.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Open Source</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Multiplataforma</span>
+                    </div>
+                </div>
+                
+                <!-- Heroic Games Launcher -->
+                <div class="game-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://cdn2.steamgriddb.com/icon_thumb/7146034614648cad695157ccf7bb4817.png" alt="Heroic" class="h-10 w-10 mr-3 rounded">
+                        <h3 class="text-xl font-bold text-gray-800">Heroic Games</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Cliente alternativo compatível com Epic Games Store e GOG, disponível via Flatpak e Snap com interface moderna.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Flatpak</span>
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Snap</span>
+                    </div>
+                </div>
+                
+                <!-- GameMode -->
+                <div class="game-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-tachometer-alt text-3xl text-purple-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-800">GameMode</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Otimizador de desempenho para jogos no Linux, já integrado a muitos títulos via Steam. Desenvolvido pela Feral Interactive.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Otimização</span>
+                        <span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">Performance</span>
+                    </div>
+                </div>
+                
+                <!-- Proton GE -->
+                <div class="game-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Proton" class="h-10 w-10 mr-3">
+                        <h3 class="text-xl font-bold text-gray-800">Proton GE</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Versão aprimorada do Proton com suporte a codecs e melhor compatibilidade com jogos do Windows via Wine e DXVK.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Wine</span>
+                        <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">DXVK</span>
+                        <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Vulkan</span>
+                    </div>
+                </div>
+                
+                <!-- MangoHud -->
+                <div class="game-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-bar text-3xl text-orange-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-800">MangoHud</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Overlay de monitoramento de performance para jogos no Linux, mostrando FPS, uso de CPU/GPU, temperaturas e mais.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Diagnóstico</span>
+                        <span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">Benchmark</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+        
+        <!-- Content Creation Section -->
+        <div>
+     
+
+         
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- OBS Studio -->
+                <div class="content-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/OBS_Studio_Logo.svg/250px-OBS_Studio_Logo.svg.png" alt="OBS" class="h-10 w-10 mr-3">
+                        <h3 class="text-xl font-bold text-gray-800">OBS Studio</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Gravação de tela e streaming profissional com suporte a plugins e personalizações avançadas.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Snap</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Flatpak</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Streaming</span>
+                    </div>
+                </div>
+                
+                <!-- Kdenlive -->
+                <div class="content-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://www.shotcut.org/assets/img/media/shotcut-logo-512x512.png" alt="Kdenlive" class="h-10 w-10 mr-3">
+                        <h3 class="text-xl font-bold text-gray-800">Shotcut</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Editor de vídeo não linear completo, ideal para YouTubers e edições de vídeos complexos.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Open Source</span>
+                        <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">NLE</span>
+                    </div>
+                </div>
+                
+                <!-- DaVinci Resolve -->
+                <div class="content-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/DaVinci_Resolve_17_logo.svg/65px-DaVinci_Resolve_17_logo.svg.png" alt="DaVinci" class="h-10 w-10 mr-3">
+                        <h3 class="text-xl font-bold text-gray-800">DaVinci Resolve</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Editor de vídeo profissional que pode ser instalado com alguns ajustes. Ideal para edição avançada e color grading.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">DEB</span>
+                        <span class="bg-pink-100 text-pink-800 text-xs px-3 py-1 rounded-full">Profissional</span>
+                    </div>
+                </div>
+                
+                <!-- Audacity -->
+                <div class="content-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Audacity_Logo.svg/128px-Audacity_Logo.svg.png" alt="Audacity" class="h-10 w-10 mr-3">
+                        <h3 class="text-xl font-bold text-gray-800">Audacity</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Edição de áudio leve e poderosa, perfeita para podcasts, dublagens e tratamento de sons.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Open Source</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Áudio</span>
+                    </div>
+                </div>
+                
+                <!-- GIMP & Krita -->
+                <div class="content-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="flex -space-x-2">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/The_GIMP_icon_-_gnome.svg" alt="GIMP" class="h-10 w-10 z-10">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Calligrakrita-base.svg" alt="Krita" class="h-10 w-10">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 ml-3">GIMP & Krita</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Ferramentas para edição de imagens e pintura digital, amplamente usadas por ilustradores e designers.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Fotos</span>
+                        <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Arte Digital</span>
+                    </div>
+                </div>
+                
+                <!-- Blender -->
+                <div class="content-card rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg" alt="Blender" class="h-10 w-10 mr-3">
+                        <h3 class="text-xl font-bold text-gray-800">Blender</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Suíte 3D completa para modelagem, animação, renderização e VFX, com atualizações frequentes via Snap.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Snap</span>
+                        <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">3D</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Animação</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="mt-16 text-center">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Pronto para transformar seu Ubuntu em uma máquina de jogos e criação?</h3>
+            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Instale essas ferramentas hoje mesmo e aproveite ao máximo seu sistema para entretenimento e trabalho criativo.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg">
+                    <i class="fas fa-gamepad mr-2"></i> Guia de Jogos
+                </a>
+                <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg">
+                    <i class="fas fa-video mr-2"></i> Guia de Criação
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
     <!-- Technical Comparison Section -->
     <section class="py-16 bg-white">
