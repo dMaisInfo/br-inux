@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Explorer - Hub de Distribuições</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        ubuntu: '#E95420',
+                        fedora: '#3B6EA5',
+                        arch: '#1793D1',
+                        opensuse: '#73BA25',
+                        debian: '#D70A53',
+                        mint: '#87CF3E',
+                        zorin: '#0CC1F3',
+                        popos: '#48B9C7',
+                        manjaro: '#35BF5C',
+                        elementary: '#64BAFF',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 3px;
+        }
+        .dark .sidebar::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .dark .sidebar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .dark .card-hover:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        }
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+        .mobile-menu.closed {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .mobile-menu.open {
+            max-height: 500px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-slate-800 dark:text-gray-100 min-h-screen">
+    <!-- Top Navigation -->
+    <header class="bg-white dark:bg-slate-700 shadow-sm fixed top-0 left-0 right-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Tux_Mono.svg" alt="Tux" class="h-8 w-8">
+                <h1 class="text-xl font-bold">Linux Hub</h1>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-4">
+                <div class="relative">
+                    <input type="text" placeholder="Pesquise por distros, termos técnicos ou tutoriais..." 
+                           class="pl-10 pr-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-600">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+                <a href="#" class="hidden md:block p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-600">
+                    <i class="fas fa-heart text-red-500"></i>
+                </a>
+                <a href="#" class="hidden md:block p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-600">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-600">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu closed bg-white dark:bg-slate-700 shadow-md md:hidden fixed top-16 left-0 right-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="mb-4">
+                <input type="text" placeholder="Pesquise por distros..." 
+                       class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <i class="fas fa-search absolute left-6 top-7 text-gray-400"></i>
+            </div>
+            <nav class="space-y-2">
+                <div>
+                    <button class="flex items-center justify-between w-full py-2 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                        <span class="flex items-center">
+                            <i class="fas fa-penguin mr-2"></i>
+                            <span>Distribuições</span>
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="pl-6 mt-1 space-y-1">
+                        <a href="#" class="block py-1 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Iniciantes</a>
+                        <a href="#" class="block py-1 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Desenvolvedores</a>
+                        <a href="#" class="block py-1 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Empresas</a>
+                        <a href="#" class="block py-1 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Otimizadas</a>
+                    </div>
+                </div>
+                <div>
+                    <button class="flex items-center justify-between w-full py-2 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                        <span class="flex items-center">
+                            <i class="fas fa-book mr-2"></i>
+                            <span>Recursos</span>
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="pl-6 mt-1 space-y-1">
+                        <a href="#" class="block py-1 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Comparativo</a>
+                        <a href="#" class="block py-1 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Migração do Windows</a>
+                        <a href="#" class="block py-1 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Terminal Básico</a>
+                    </div>
+                </div>
+                <div class="pt-2 border-t border-gray-200 dark:border-gray-600">
+                    <a href="#" class="flex items-center py-2 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                        <i class="fas fa-heart text-red-500 mr-2"></i>
+                        <span>Doar</span>
+                    </a>
+                    <a href="#" class="flex items-center py-2 px-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <span>Contato</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex pt-16">
+        <!-- Sidebar -->
+        <aside class="sidebar hidden md:block w-64 bg-white dark:bg-slate-700 shadow-sm h-screen sticky top-16 overflow-y-auto">
+            <nav class="p-4 space-y-6">
+                <div>
+                    <h3 class="flex items-center text-lg font-medium px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                        <i class="fas fa-penguin mr-2"></i>
+                        <span>Distribuições</span>
+                    </h3>
+                    <div class="pl-8 mt-2 space-y-2">
+                        <div>
+                            <button class="flex items-center justify-between w-full px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                                <span class="flex items-center">
+                                    <span class="w-3 h-3 rounded-full bg-green-500 mr-2"></span>
+                                    <span>Iniciantes</span>
+                                </span>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Ubuntu</a>
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Linux Mint</a>
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Zorin OS</a>
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Elementary OS</a>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="flex items-center justify-between w-full px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                                <span class="flex items-center">
+                                    <span class="w-3 h-3 rounded-full bg-blue-500 mr-2"></span>
+                                    <span>Desenvolvedores</span>
+                                </span>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Fedora</a>
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Arch Linux</a>
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Manjaro</a>
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">openSUSE</a>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="flex items-center justify-between w-full px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                                <span class="flex items-center">
+                                    <span class="w-3 h-3 rounded-full bg-orange-500 mr-2"></span>
+                                    <span>Empresas</span>
+                                </span>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Debian</a>
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">CentOS</a>
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">RHEL</a>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="flex items-center justify-between w-full px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                                <span class="flex items-center">
+                                    <span class="w-3 h-3 rounded-full bg-purple-500 mr-2"></span>
+                                    <span>Otimizadas</span>
+                                </span>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Pop!_OS</a>
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">MX Linux</a>
+                                <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Lubuntu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="flex items-center text-lg font-medium px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                        <i class="fas fa-book mr-2"></i>
+                        <span>Recursos</span>
+                    </h3>
+                    <div class="pl-8 mt-2 space-y-2">
+                        <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Comparativo de Distros</a>
+                        <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Guia de Migração do Windows</a>
+                        <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Terminal Básico</a>
+                        <a href="#" class="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-slate-600">Comandos Essenciais</a>
+                    </div>
+                </div>
+                
+                <div class="pt-4 border-t border-gray-200 dark:border-gray-600">
+                    <a href="#" class="flex items-center px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                        <i class="fas fa-heart text-red-500 mr-2"></i>
+                        <span>Doar para o Projeto</span>
+                    </a>
+                    <a href="#" class="flex items-center px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-slate-600">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <span>Contato</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Panel -->
+        <main class="flex-1 p-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold mb-2">Escolha sua Distribuição Linux</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">Guias completos para instalar, configurar e dominar cada sistema.</p>
+                </div>
+                
+                <!-- Quick Filters -->
+                <div class="mb-8 flex flex-wrap gap-2">
+                    <button class="px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800 transition">
+                        <i class="fas fa-user-graduate mr-2"></i> Para Iniciantes
+                    </button>
+                    <button class="px-4 py-2 rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 hover:bg-green-200 dark:hover:bg-green-800 transition">
+                        <i class="fas fa-laptop mr-2"></i> Para Notebooks
+                    </button>
+                    <button class="px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 hover:bg-purple-200 dark:hover:bg-purple-800 transition">
+                        <i class="fas fa-bolt mr-2"></i> Leves
+                    </button>
+                    <button class="px-4 py-2 rounded-full bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 hover:bg-red-200 dark:hover:bg-red-800 transition">
+                        <i class="fas fa-gamepad mr-2"></i> Gaming
+                    </button>
+                    <button class="px-4 py-2 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 hover:bg-yellow-200 dark:hover:bg-yellow-800 transition">
+                        <i class="fas fa-code mr-2"></i> Desenvolvedores
+                    </button>
+                </div>
+                
+                <!-- Distro Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <!-- Ubuntu Card -->
+                    <div class="card-hover bg-gradient-to-br from-ubuntu/10 to-ubuntu/30 dark:from-ubuntu/20 dark:to-ubuntu/40 rounded-xl p-6 border border-ubuntu/20 dark:border-ubuntu/30">
+                        <div class="flex items-start justify-between mb-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo-ubuntu_cof-orange-hex.svg/1200px-Logo-ubuntu_cof-orange-hex.svg.png" alt="Ubuntu Logo" class="h-12">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-ubuntu/20 dark:bg-ubuntu/30 text-ubuntu dark:text-orange-200">Popular</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Ubuntu</h3>
+                        <div class="flex items-center text-sm mb-3">
+                            <span class="px-2 py-1 mr-2 rounded-full bg-ubuntu/20 dark:bg-ubuntu/30 text-ubuntu dark:text-orange-200 text-xs">✅ Para: Iniciantes, uso geral</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Baseado no Debian, oferece uma experiência amigável com suporte de longo prazo e vasta comunidade.</p>
+                        <div class="flex items-center text-sm mb-4">
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">Destaque:</span>
+                            <span class="ml-1">"Fácil instalação, suporte longo"</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="/ubuntu-24-04-lts.html" class="px-4 py-2 bg-ubuntu text-white rounded-lg hover:bg-orange-700 transition flex items-center">
+                                <i class="fas fa-book-open mr-2"></i> Acessar Guia
+                            </a>
+                            <button class="p-2 rounded-full hover:bg-ubuntu/20 dark:hover:bg-ubuntu/30">
+                                <i class="fas fa-share-alt text-ubuntu dark:text-orange-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Fedora Card -->
+                    <div class="card-hover bg-gradient-to-br from-fedora/10 to-fedora/30 dark:from-fedora/20 dark:to-fedora/40 rounded-xl p-6 border border-fedora/20 dark:border-fedora/30">
+                        <div class="flex items-start justify-between mb-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Fedora_icon_%282021%29.svg/1024px-Fedora_icon_%282021%29.svg.png" alt="Fedora Logo" class="h-12">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-fedora/20 dark:bg-fedora/30 text-fedora dark:text-blue-200">Inovador</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Fedora</h3>
+                        <div class="flex items-center text-sm mb-3">
+                            <span class="px-2 py-1 mr-2 rounded-full bg-fedora/20 dark:bg-fedora/30 text-fedora dark:text-blue-200 text-xs">✅ Para: Devs, tecnologias recentes</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Distribuição patrocinada pela Red Hat que apresenta as últimas tecnologias de código aberto.</p>
+                        <div class="flex items-center text-sm mb-4">
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">Destaque:</span>
+                            <span class="ml-1">"Inovação com Red Hat"</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="px-4 py-2 bg-fedora text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                                <i class="fas fa-book-open mr-2"></i> Acessar Guia
+                            </a>
+                            <button class="p-2 rounded-full hover:bg-fedora/20 dark:hover:bg-fedora/30">
+                                <i class="fas fa-share-alt text-fedora dark:text-blue-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Arch Linux Card -->
+                    <div class="card-hover bg-gradient-to-br from-arch/10 to-arch/30 dark:from-arch/20 dark:to-arch/40 rounded-xl p-6 border border-arch/20 dark:border-arch/30">
+                        <div class="flex items-start justify-between mb-4">
+                            <img src="https://cdn0.iconfinder.com/data/icons/flat-round-system/512/archlinux-512.png" alt="Arch Logo" class="h-12">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-arch/20 dark:bg-arch/30 text-arch dark:text-blue-200">Avançado</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Arch Linux</h3>
+                        <div class="flex items-center text-sm mb-3">
+                            <span class="px-2 py-1 mr-2 rounded-full bg-arch/20 dark:bg-arch/30 text-arch dark:text-blue-200 text-xs">✅ Para: Avançados, minimalistas</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Distribuição rolling release que segue o princípio KISS (Keep It Simple, Stupid).</p>
+                        <div class="flex items-center text-sm mb-4">
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">Destaque:</span>
+                            <span class="ml-1">"Customização total"</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="px-4 py-2 bg-arch text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                                <i class="fas fa-book-open mr-2"></i> Acessar Guia
+                            </a>
+                            <button class="p-2 rounded-full hover:bg-arch/20 dark:hover:bg-arch/30">
+                                <i class="fas fa-share-alt text-arch dark:text-blue-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- openSUSE Card -->
+                    <div class="card-hover bg-gradient-to-br from-opensuse/10 to-opensuse/30 dark:from-opensuse/20 dark:to-opensuse/40 rounded-xl p-6 border border-opensuse/20 dark:border-opensuse/30">
+                        <div class="flex items-start justify-between mb-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/OpenSUSE_Logo.svg/1200px-OpenSUSE_Logo.svg.png" alt="openSUSE Logo" class="h-12">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-opensuse/20 dark:bg-opensuse/30 text-opensuse dark:text-green-200">Estável</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">openSUSE</h3>
+                        <div class="flex items-center text-sm mb-3">
+                            <span class="px-2 py-1 mr-2 rounded-full bg-opensuse/20 dark:bg-opensuse/30 text-opensuse dark:text-green-200 text-xs">✅ Para: Estabilidade, YaST</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Conhecido por sua ferramenta de configuração YaST e versões Leap (estável) e Tumbleweed (rolling).</p>
+                        <div class="flex items-center text-sm mb-4">
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">Destaque:</span>
+                            <span class="ml-1">"SUSE Enterprise"</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="px-4 py-2 bg-opensuse text-white rounded-lg hover:bg-green-700 transition flex items-center">
+                                <i class="fas fa-book-open mr-2"></i> Acessar Guia
+                            </a>
+                            <button class="p-2 rounded-full hover:bg-opensuse/20 dark:hover:bg-opensuse/30">
+                                <i class="fas fa-share-alt text-opensuse dark:text-green-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Debian Card -->
+                    <div class="card-hover bg-gradient-to-br from-debian/10 to-debian/30 dark:from-debian/20 dark:to-debian/40 rounded-xl p-6 border border-debian/20 dark:border-debian/30">
+                        <div class="flex items-start justify-between mb-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Debian-OpenLogo.svg/1024px-Debian-OpenLogo.svg.png" alt="Debian Logo" class="h-12">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-debian/20 dark:bg-debian/30 text-debian dark:text-red-200">Clássico</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Debian</h3>
+                        <div class="flex items-center text-sm mb-3">
+                            <span class="px-2 py-1 mr-2 rounded-full bg-debian/20 dark:bg-debian/30 text-debian dark:text-red-200 text-xs">✅ Para: Servidores, puristas</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Um dos sistemas mais antigos e estáveis, base para muitas outras distribuições como Ubuntu.</p>
+                        <div class="flex items-center text-sm mb-4">
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">Destaque:</span>
+                            <span class="ml-1">"Estabilidade extrema"</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="px-4 py-2 bg-debian text-white rounded-lg hover:bg-red-700 transition flex items-center">
+                                <i class="fas fa-book-open mr-2"></i> Acessar Guia
+                            </a>
+                            <button class="p-2 rounded-full hover:bg-debian/20 dark:hover:bg-debian/30">
+                                <i class="fas fa-share-alt text-debian dark:text-red-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Linux Mint Card -->
+                    <div class="card-hover bg-gradient-to-br from-mint/10 to-mint/30 dark:from-mint/20 dark:to-mint/40 rounded-xl p-6 border border-mint/20 dark:border-mint/30">
+                        <div class="flex items-start justify-between mb-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Linux_Mint_logo_without_wordmark.svg/1200px-Linux_Mint_logo_without_wordmark.svg.png" alt="Mint Logo" class="h-12">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-mint/20 dark:bg-mint/30 text-mint dark:text-green-200">Amigável</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Linux Mint</h3>
+                        <div class="flex items-center text-sm mb-3">
+                            <span class="px-2 py-1 mr-2 rounded-full bg-mint/20 dark:bg-mint/30 text-mint dark:text-green-200 text-xs">✅ Para: Ex-usuários Windows</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Focado em facilidade de uso e experiência pronta para uso direto, baseado no Ubuntu.</p>
+                        <div class="flex items-center text-sm mb-4">
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">Destaque:</span>
+                            <span class="ml-1">"Pronto para uso"</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="px-4 py-2 bg-mint text-white rounded-lg hover:bg-green-700 transition flex items-center">
+                                <i class="fas fa-book-open mr-2"></i> Acessar Guia
+                            </a>
+                            <button class="p-2 rounded-full hover:bg-mint/20 dark:hover:bg-mint/30">
+                                <i class="fas fa-share-alt text-mint dark:text-green-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Comparison -->
+                <div class="bg-white dark:bg-slate-700 rounded-xl shadow-sm p-6 mb-12">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold">Comparativo Rápido</h3>
+                        <a href="#" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition flex items-center">
+                            <i class="fas fa-list-ul mr-2"></i> Ver Comparativo Completo
+                        </a>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                            <thead class="bg-gray-50 dark:bg-slate-600">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Distro</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Lançamento</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Gerenciador</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Dificuldade</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Desktop Padrão</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-slate-700 divide-y divide-gray-200 dark:divide-gray-600">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap font-medium">Ubuntu</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">LTS/Intermediário</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">apt</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs">Fácil</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">GNOME</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap font-medium">Arch</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rolling</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">pacman</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 rounded-full bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs">Difícil</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Nenhum</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap font-medium">Fedora</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Semestral</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">dnf</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs">Médio</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">GNOME</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap font-medium">Debian</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">LTS</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">apt</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs">Médio</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">GNOME</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap font-medium">openSUSE</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Leap/Tumbleweed</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">zypper</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs">Médio</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">KDE</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-700 border-t border-gray-200 dark:border-gray-600">
+        <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex justify-center md:order-2 space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                <div class="mt-8 md:mt-0 md:order-1">
+                    <p class="text-center text-base text-gray-500 dark:text-gray-400">
+                        Linux Explorer é um projeto educacional independente. Não temos ligação com a Canonical, Red Hat, SUSE ou outras empresas.
+                    </p>
+                    <div class="mt-4 text-center">
+                        <a href="#" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition inline-flex items-center">
+                            <i class="fas fa-heart mr-2"></i> Ajude a manter este projeto - Doe agora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            mobileMenu.classList.toggle('closed');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.remove('open');
+                mobileMenu.classList.add('closed');
+            }
+        });
+    </script>
+</body>
+</html>

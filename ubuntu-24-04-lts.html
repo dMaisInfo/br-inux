@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubuntu 24.04 LTS - Estabilidade, Suporte e Inovação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+
+
+            @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating-menu {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 120px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .distribution-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .distribution-icon:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
+        }
+        
+        .ubuntu { color: #E95420; }
+
+
+
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #2C001E 0%, #E95420 100%);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .ubuntu-orange {
+            background-color: #E95420;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+        }
+        
+        .distro-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .distro-icon:hover {
+            transform: scale(1.1);
+        }
+
+
+
+
+        
+    </style>
+
+
+
+
+
+
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://assets.ubuntu.com/v1/29985a98-ubuntu-logo32.png" alt="Ubuntu Logo" class="h-10">
+                <span class="text-xl font-bold text-gray-800">Ubuntu LTS</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#why" class="text-gray-600 hover:text-orange-600 font-medium">Por que Ubuntu?</a>
+                <a href="#install" class="text-gray-600 hover:text-orange-600 font-medium">Instalação</a>
+                <a href="#features" class="text-gray-600 hover:text-orange-600 font-medium">Recursos</a>
+                <a href="#community" class="text-gray-600 hover:text-orange-600 font-medium">Comunidade</a>
+            </div>
+            <button class="md:hidden text-gray-600">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white">
+        <div class="container mx-auto px-4 py-20 md:py-32 flex flex-col items-center text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Ubuntu 24.04 LTS: Linux para seres humanos</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl">O sistema operacional mais popular do mundo - simples, seguro e com suporte de longo prazo para todos.</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#install" class="bg-white text-orange-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg">
+                    <i class="fas fa-download mr-2"></i> Baixar Ubuntu
+                </a>
+                <a href="#tutorial" class="bg-transparent border-2 border-white hover:bg-white hover:text-orange-600 font-bold py-3 px-6 rounded-lg text-lg transition duration-300">
+                    <i class="fas fa-play mr-2"></i> Tour Virtual
+                </a>
+            </div>
+            <div class="mt-12 w-full max-w-4xl">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Ubuntu_24.04_Noble_Numbat_Desktop_English.png" alt="Ubuntu Desktop" class="rounded-lg shadow-2xl border-4 border-white">
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Ubuntu Section -->
+    <section id="why" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Por que escolher o Ubuntu?</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 card-hover">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-shield-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Segurança e Estabilidade</h3>
+                    <p class="text-gray-600">Atualizações de segurança regulares e suporte de longo prazo (5 anos) garantidos pela Canonical.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 card-hover">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-calendar-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Lançamentos Previsíveis</h3>
+                    <p class="text-gray-600">Novas versões LTS a cada 2 anos em abril (24.04, 26.04, etc.), com suporte estendido disponível.</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 card-hover">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-box-open text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Ecossistema Completo</h3>
+                    <p class="text-gray-600">Milhares de pacotes disponíveis via APT, Snap e Flatpak. Suporte a Docker, Kubernetes e mais.</p>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 card-hover">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-laptop text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Pronto para Uso</h3>
+                    <p class="text-gray-600">Inclui suite de escritório, navegador, reprodutor de mídia e tudo que você precisa no dia a dia.</p>
+                </div>
+                
+                <!-- Card 5 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 card-hover">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-laptop-code text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Melhor para Desenvolvedores</h3>
+                    <p class="text-gray-600">Suporte nativo a Python, Ruby, Node.js, Go e todas as principais linguagens e frameworks.</p>
+                </div>
+                
+                <!-- Card 6 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 card-hover">
+                    <div class="text-orange-600 mb-4">
+                        <i class="fas fa-random text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Variantes Oficiais</h3>
+                    <p class="text-gray-600">Kubuntu, Xubuntu, Lubuntu e outras variantes para diferentes necessidades e preferências.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Guide Section -->
+    <section id="install" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Como Instalar o Ubuntu</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-orange-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                                <span class="font-bold">1</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Baixar a ISO oficial</h3>
+                        </div>
+                        <p class="text-gray-600 ml-14 mb-6">Acesse ubuntu.com/download e baixe a imagem ISO mais recente. Verifique a integridade com o checksum.</p>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="bg-orange-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                                <span class="font-bold">2</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Criar mídia bootável</h3>
+                        </div>
+                        <p class="text-gray-600 ml-14 mb-6">Use o Balena Etcher, Rufus ou Startup Disk Creator para gravar a ISO em um pendrive (mínimo 4GB).</p>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="bg-orange-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                                <span class="font-bold">3</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Configurar BIOS/UEFI</h3>
+                        </div>
+                        <p class="text-gray-600 ml-14 mb-6">Reinicie e acesse o menu de boot (F12, F2 ou Del). Selecione a mídia criada para iniciar o Live CD.</p>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-orange-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                                <span class="font-bold">4</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Assistente de instalação</h3>
+                        </div>
+                        <p class="text-gray-600 ml-14">Siga o assistente gráfico para particionamento, seleção de idioma, criação de usuário e configurações regionais.</p>
+                    </div>
+                    
+                    <div class="mt-8 flex justify-center">
+                        <a href="https://ubuntu.com/download" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg">
+                            <i class="fas fa-download mr-2"></i> Baixar Ubuntu 24.04 LTS
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="relative rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/e/0/e03b2b35eb840b7bc31dcb3b21a2395ad4671713.jpeg" alt="Ubuntu Installer" class="w-full">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <a href="#tutorial" class="bg-white text-orange-600 hover:bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center shadow-lg transform hover:scale-110 transition duration-300">
+                                <i class="fas fa-play text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post-Installation Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Primeiros Passos Pós-Instalação</h2>
+            
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl p-8 shadow-md">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="flex items-start">
+                        <div class="bg-orange-100 text-orange-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Atualizar o sistema</h3>
+                            <p class="text-gray-600">Execute no terminal: <code class="bg-gray-200 px-2 py-1 rounded">sudo apt update && sudo apt upgrade</code></p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-orange-100 text-orange-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Configurar Drivers</h3>
+                            <p class="text-gray-600">Acesse "Software e Atualizações" > "Drivers Adicionais" para instalar drivers proprietários.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-orange-100 text-orange-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Personalizar o ambiente</h3>
+                            <p class="text-gray-600">Ajuste temas, ícones e extensões GNOME nas Configurações do Sistema.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-orange-100 text-orange-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Instalar software adicional</h3>
+                            <p class="text-gray-600">Use a Ubuntu Software ou o terminal para instalar aplicativos via APT, Snap ou Flatpak.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                    <a href="https://help.ubuntu.com/stable/ubuntu-help/index.html" class="text-orange-600 hover:text-orange-700 font-medium">
+                        <i class="fas fa-book mr-2"></i> Guia Oficial do Ubuntu
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Recursos e Tecnologias</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-8 items-center">
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-xl p-8 shadow-lg">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-cube text-orange-600 mr-2"></i> Snap Packages</h3>
+                            <p class="text-gray-600">Sistema de empacotamento universal que permite instalar aplicativos com todas dependências incluídas, atualizando-se automaticamente.</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-shield-alt text-orange-600 mr-2"></i> AppArmor</h3>
+                            <p class="text-gray-600">Sistema de segurança que restringe as capacidades de programas individuais, protegendo contra vulnerabilidades.</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-cloud text-orange-600 mr-2"></i> Integração com Nuvem</h3>
+                            <p class="text-gray-600">Acesso fácil a contas online e serviços como Google Drive, Microsoft OneDrive e Nextcloud diretamente do gerenciador de arquivos.</p>
+                        </div>
+                        
+                        <div class="flex justify-center mt-8">
+                            <a href="https://ubuntu.com/features" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg">
+                                <i class="fas fa-info-circle mr-2"></i> Ver Todos os Recursos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/250px-Kubernetes_logo_without_workmark.svg.png" alt="Kubernetes" class="h-16 mb-3">
+                            <span class="text-gray-700 font-medium">MicroK8s</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg" alt="Docker" class="h-16 mb-3">
+                            <span class="text-gray-700 font-medium">Docker</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Laravel.svg" alt="Laravel" class="h-16 mb-3">
+                            <span class="text-gray-700 font-medium">Laravel</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" alt="VSCode" class="h-16 mb-3">
+                            <span class="text-gray-700 font-medium">VS Code</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/UbuntuCoF.svg" alt="Ubuntu" class="h-16 mb-3">
+                            <span class="text-gray-700 font-medium">Snapcraft</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg" alt="Git" class="h-16 mb-3">
+                            <span class="text-gray-700 font-medium">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Comparison Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Comparativo Técnico</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-3 px-4 text-left font-bold text-gray-700">Característica</th>
+                            <th class="py-3 px-4 text-left font-bold text-gray-700">Ubuntu LTS</th>
+                            <th class="py-3 px-4 text-left font-bold text-gray-700">openSUSE Leap</th>
+                            <th class="py-3 px-4 text-left font-bold text-gray-700">Debian Stable</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 font-medium">Ciclo de Lançamento</td>
+                            <td class="py-3 px-4 text-orange-600 font-medium">2 anos (5 anos suporte)</td>
+                            <td class="py-3 px-4">12-18 meses</td>
+                            <td class="py-3 px-4">~2 anos</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-3 px-4 text-gray-700 font-medium">Base</td>
+                            <td class="py-3 px-4 text-orange-600 font-medium">Debian (com modificações)</td>
+                            <td class="py-3 px-4">SUSE Linux Enterprise</td>
+                            <td class="py-3 px-4">Debian</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 font-medium">Gerenciador de Pacotes</td>
+                            <td class="py-3 px-4 text-orange-600 font-medium">APT (DEB) + Snap</td>
+                            <td class="py-3 px-4">ZYpp (RPM)</td>
+                            <td class="py-3 px-4">APT (DEB)</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-3 px-4 text-gray-700 font-medium">Ambiente Padrão</td>
+                            <td class="py-3 px-4 text-orange-600 font-medium">GNOME</td>
+                            <td class="py-3 px-4">KDE/GNOME</td>
+                            <td class="py-3 px-4">GNOME</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 font-medium">Consumo de RAM</td>
+                            <td class="py-3 px-4 text-orange-600 font-medium">~800MB</td>
+                            <td class="py-3 px-4">~600MB</td>
+                            <td class="py-3 px-4">~550MB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-8 text-center text-gray-600">
+                <p>Dados aproximados podem variar conforme configuração e hardware. Testes realizados em máquina com 8GB RAM e SSD.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubuntu Flavors Section -->
+    <section id="flavors" class="py-16 ubuntu-orange text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Variantes Oficiais do Ubuntu</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-8 items-center">
+                <div class="lg:w-1/2">
+                    <img src="https://i.postimg.cc/L6N2061g/gbnfgn.png" alt="Ubuntu Flavors" class="rounded-lg shadow-2xl border-4 border-white">
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8">
+                        <h3 class="text-2xl font-bold mb-4">Escolha o Ubuntu perfeito para você</h3>
+                        
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="bg-white text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                                <span class="flex-1"><strong>Kubuntu</strong> - Ubuntu com ambiente KDE Plasma para quem prefere um desktop altamente personalizável</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-white text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                                <span class="flex-1"><strong>Xubuntu</strong> - Usa o Xfce, ideal para computadores mais antigos ou quem prefere um ambiente leve</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-white text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                                <span class="flex-1"><strong>Lubuntu</strong> - Com LXQt, a opção mais leve para hardware limitado</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-white text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                                <span class="flex-1"><strong>Ubuntu MATE</strong> - Ambiente tradicional inspirado no GNOME 2, com foco em simplicidade</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-white text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                                <span class="flex-1"><strong>Ubuntu Budgie</strong> - Combina o Ubuntu com o elegante ambiente Budgie</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-white text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                                <span class="flex-1"><strong>Ubuntu Studio</strong> - Otimizado para produção multimídia com ferramentas criativas</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8">
+                            <a href="https://ubuntu.com/download/flavours" class="bg-white text-orange-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg inline-block">
+                                <i class="fas fa-download mr-2"></i> Baixar Variantes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Videos Section -->
+    <section id="tutorial" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Aprenda Ubuntu do Zero</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative pt-[56.25%]">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/p6RoEe0CO_Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Instalação Completa do Ubuntu</h3>
+                        <p class="text-gray-600">Guia passo a passo para instalar o Ubuntu em seu computador.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative pt-[56.25%]">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/_EKUVcfVkmE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Primeiros Passos no Ubuntu</h3>
+                        <p class="text-gray-600">Tudo que você precisa saber para começar a usar o Ubuntu.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative pt-[56.25%]">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/8n_awWKtoLE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Dicas para Desenvolvedores</h3>
+                        <p class="text-gray-600">Configure seu ambiente de desenvolvimento perfeito no Ubuntu.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="https://www.youtube.com/c/Ubuntu" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg inline-block">
+                    <i class="fab fa-youtube mr-2"></i> Ver Mais Tutoriais
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Comunidade e Suporte</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 rounded-xl p-6 text-center">
+                        <div class="text-orange-600 text-4xl mb-4">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Documentação Oficial</h3>
+                        <p class="text-gray-600 mb-4">Manuais detalhados, guias e artigos técnicos mantidos pela Canonical.</p>
+                        <a href="https://help.ubuntu.com/" class="text-orange-600 hover:text-orange-700 font-medium">
+                            Acessar Documentação <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-6 text-center">
+                        <div class="text-orange-600 text-4xl mb-4">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Fóruns da Comunidade</h3>
+                        <p class="text-gray-600 mb-4">Tire dúvidas e compartilhe conhecimento com outros usuários.</p>
+                        <a href="https://ubuntuforums.org/" class="text-orange-600 hover:text-orange-700 font-medium">
+                            Acessar Fórums <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-6 text-center">
+                        <div class="text-orange-600 text-4xl mb-4">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Suporte Profissional</h3>
+                        <p class="text-gray-600 mb-4">Para empresas que necessitam de suporte comercial da Canonical.</p>
+                        <a href="https://ubuntu.com/support" class="text-orange-600 hover:text-orange-700 font-medium">
+                            Suporte Ubuntu <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <!-- Distros Comparison Section -->
+ <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Também Conheça Outras Distros</h2>
+        
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="/index.html" class="distro-icon bg-white p-4 rounded-lg shadow-md hover:shadow-lg flex flex-col items-center w-24">
+                <img src="https://en.opensuse.org/images/6/6c/Leap-logo.svg" alt="openSUSE Tumbleweed" class="h-12 mb-2">
+                <span class="text-xs text-center font-medium text-gray-700">Tumbleweed</span>
+            </a>
+            
+            <a href="/index.html" class="distro-icon bg-white p-4 rounded-lg shadow-md hover:shadow-lg flex flex-col items-center w-24">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg" alt="Debian" class="h-12 mb-2">
+                <span class="text-xs text-center font-medium text-gray-700">Debian</span>
+            </a>
+            
+            <a href="/index.html" class="distro-icon bg-white p-4 rounded-lg shadow-md hover:shadow-lg flex flex-col items-center w-24">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/UbuntuCoF.svg" alt="Ubuntu" class="h-12 mb-2">
+                <span class="text-xs text-center font-medium text-gray-700">Ubuntu</span>
+            </a>
+            
+            <a href="/index.html" class="distro-icon bg-white p-4 rounded-lg shadow-md hover:shadow-lg flex flex-col items-center w-24">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Fedora_icon_%282021%29.svg" alt="Fedora" class="h-12 mb-2">
+                <span class="text-xs text-center font-medium text-gray-700">Fedora</span>
+            </a>
+            
+            <a href="/index.html" class="distro-icon bg-white p-4 rounded-lg shadow-md hover:shadow-lg flex flex-col items-center w-24">
+                <img src="https://cdn0.iconfinder.com/data/icons/flat-round-system/512/archlinux-512.png" alt="Arch Linux" class="h-12 mb-2">
+                <span class="text-xs text-center font-medium text-gray-700">Arch</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="https://assets.ubuntu.com/v1/29985a98-ubuntu-logo32.png" alt="Ubuntu Logo" class="h-8 mr-2">
+                        <span class="text-xl font-bold"> Ubuntu</span>
+                    </div>
+                    <p class="text-gray-400">Linux para seres humanos. O sistema operacional open source mais popular do mundo.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://ubuntu.com/download" class="text-gray-400 hover:text-white">Download</a></li>
+                        <li><a href="https://help.ubuntu.com/" class="text-gray-400 hover:text-white">Documentação</a></li>
+                        <li><a href="https://ubuntuforums.org/" class="text-gray-400 hover:text-white">Fóruns</a></li>
+                        <li><a href="https://ubuntu.com/blog" class="text-gray-400 hover:text-white">Blog Oficial</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Comunidade</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://community.ubuntu.com/" class="text-gray-400 hover:text-white">Portal da Comunidade</a></li>
+                        <li><a href="https://ubuntu.com/community/events" class="text-gray-400 hover:text-white">Eventos</a></li>
+                        <li><a href="https://wiki.ubuntu.com/" class="text-gray-400 hover:text-white">Wiki</a></li>
+                        <li><a href="https://discourse.ubuntu.com/" class="text-gray-400 hover:text-white">Discourse</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Siga-nos</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://twitter.com/ubuntu" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/ubuntu" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.youtube.com/ubuntu" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://github.com/ubuntu" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 Canonical Ltd. Ubuntu e Canonical são marcas registradas da Canonical Ltd.</p>
+                <p class="mt-2 text-sm">Linux® é uma marca registrada de Linus Torvalds. Todas as outras marcas são propriedade de seus respectivos donos.</p>
+            </div>
+        </div>
+    </footer>
+
+   
+
+
+<!-- INÍCIO DO MENU FLUTUANTE - COPIAR ESTA PARTE -->
+<div class="fixed right-6 bottom-6 z-50 floating-menu">
+    <div class="bg-gray-800 rounded-full p-3 shadow-xl border border-orange-500">
+        <div class="flex flex-col space-y-4">
+            <div class="tooltip">
+                <a href="#ubuntu" class="distribution-icon ubuntu text-3xl">
+                    <i class="fab fa-ubuntu"></i>
+                </a>
+                <span class="tooltip-text">Ubuntu</span>
+            </div>
+            <div class="tooltip">
+                <a href="https://ubuntu.com/download" target="_blank" class="distribution-icon text-gray-200 text-3xl">
+                    <i class="fa-solid fa-download"></i>
+                </a>
+                <span class="tooltip-text">Download</span>
+            </div>
+            <div class="tooltip">
+                <a href="https://help.ubuntu.com" target="_blank" class="distribution-icon text-gray-200 text-3xl">
+                    <i class="fas fa-book"></i>
+                </a>
+                <span class="tooltip-text">Documentação</span>
+            </div>
+            <div class="tooltip">
+                <a href="https://askubuntu.com" target="_blank" class="distribution-icon text-gray-200 text-3xl">
+                    <i class="fas fa-question-circle"></i>
+                </a>
+                <span class="tooltip-text">Ajuda</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIM DO MENU FLUTUANTE -->
+
+<script>
+// INÍCIO DO SCRIPT - COPIAR ESTA PARTE
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scroll for floating menu links
+    document.querySelectorAll('.distribution-icon').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if(this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+});
+// FIM DO SCRIPT
+</script>
+
+
+</body>
+</html>
